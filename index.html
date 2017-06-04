@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Train Scheduler</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+<body>
+<header>
+	<h1>ALL the Trains</h1>
+</header>
+
+<div class="panel panel-default">
+	<div class="panel-heading">Current Train Schedule</div>
+	<table class="table-responsive table">
+		<thead>
+	    <tr>
+	      <th>Train Name</th>
+	      <th>Destination</th>
+	      <th>Frequency (min)</th>
+	      <th>Next Arrival</th>
+	      <th>Minutes Away</th>
+	      <!-- <th></th> -->
+	    </tr>
+		</thead>
+		<tbody id="table-body">
+			<tr>
+		      <td scope="row">Trainy McTrain</td>
+		      <td>Outer Space</td>
+		      <td>60</td>
+		      <td>8:30 PM</td>
+		      <td>20</td>
+		      <!-- <td><button><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button><button><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button></td> -->
+
+		    </tr>
+		</tbody>
+	</table>
+</div>
+
+
+
+
+<!-- Add Train Form -->
+
+<div class="panel panel-default">
+	<div class="panel-heading">Add Train</div>
+	<form>
+		<div class="form-group">
+		    <label for="train-name">Train Name</label>
+		    <input type="text" class="form-control" id="train-name">
+  		</div>
+ 		<div class="form-group">
+		    <label for="destination">Destination</label>
+		    <input type="text" class="form-control" id="destination">
+  		</div>
+  		<div class="form-group">
+		    <label for="first-train">First Train Time (HH:mm - military time)</label>
+		    <input type="text" class="form-control" id="first-train">
+  		</div>
+  		<div class="form-group">
+		    <label for="frequency">Frequency (min)</label>
+		    <input type="text" class="form-control" id="frequency">
+  		</div>
+  		<button type="submit" class="btn btn-default">Submit</button>
+	</form>
+</div>
+
+
+
+<script type="text/javascript" src="app.js"></script>
+</body>
+</html>

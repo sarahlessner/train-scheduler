@@ -1,0 +1,25 @@
+body {
+	font-size: 16px;
+	background: black;
+}
+
+h1 {
+	text-align: center;
+	color: chartreuse;
+}
+
+.panel {
+	
+margin: 40px;
+
+}
+
+form {
+	margin: 15px;
+}
+
+table {
+	width: 98.5% !important;
+    margin-left: 10px;
+
+}

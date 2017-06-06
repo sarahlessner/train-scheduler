@@ -3,7 +3,6 @@ displayTrains();
 
 //firebase https://train-scheduler-77540.firebaseio.com/
 
-
 var counter = localStorage.length/4;
 //when #submit-button is clicked
 $("#submit-button").on("click", function(){
@@ -11,6 +10,13 @@ $("#submit-button").on("click", function(){
 	//prevent default
 	event.preventDefault();
 
+	//TODO: If any of the fields are empty - alert user to complete all fields
+	// if (($("#train-name").val() === "") || ($("#destination").val() === "") || 
+	//    ($("#first-train").val() === "") || ($("#frequency").val() === "")) {
+	// 	alert("Please complete all fields before submitting!");
+	// }
+
+	
 	// #train-name 
 	var trainName = $("#train-name").val().trim();
 
@@ -22,6 +28,13 @@ $("#submit-button").on("click", function(){
 
 	// #frequency
 	var frequency = $("#frequency").val().trim();
+
+	if ((trainName === "") || (destination === "") || 
+	   (firstTrain === "") || (frequency === "")) {
+		alert("Please complete all fields before submitting!");
+	}
+
+	else {
 
 	$("#train-name").val('');
 	$("#destination").val('');
@@ -40,6 +53,7 @@ $("#submit-button").on("click", function(){
 
 	//call the function to display train data
 	displayTrains();
+	};
 });
 
 //function to display train data
@@ -56,25 +70,26 @@ function displayTrains() {
 		//jquery table row - store as variable
 		var myRow = $("<tr>");
 			//query <td> elements for each column of table appended to <tr>
-				//append trainName at index also append scope = "row"
 
 		myRow.append($("<td>").html(localStorage.getItem("train-"+i)));
 		myRow.append($("<td>").html(localStorage.getItem("destination-"+i)));
-		myRow.append($("<td>").html(localStorage.getItem("first-"+i)));
-		myRow.append($("<td>").html(localStorage.getItem("frequency-"+i)));
+		//calculate next arrival and minutes away with moment.js based on frequency and first train and current time
 
+		//store calculations as variables for next arrival &  minutes away
+
+		//append frequency
+		myRow.append($("<td>").html(localStorage.getItem("frequency-"+i)));
+		//append next arrival <td>
+		//append minutes away <td>
+		//these 2 rows are here for testing my rows display - delete after appending above 2 lines
+		myRow.append($("<td>").html(localStorage.getItem("first-"+i))); 
+		myRow.append($("<td>").html(localStorage.getItem("first-"+i))); 
+		//append <tr> to #table-body
 		$("#table-body").append(myRow);
 	};
-				//append destination at index
-				//append frequency at index
-				//calculate next arrival & minutes away based on frequency & first train time/current time
-					//store result of calculation as variables for next arrival &  minutes away
-					//append next arrival <td>
-					//append minutes away <td>
-		//append <tr> to #table-body
+	
 };
 	
-
 });
 
 

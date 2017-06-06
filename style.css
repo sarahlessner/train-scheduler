@@ -1,17 +1,24 @@
 body {
 	font-size: 16px;
-	background: black;
+	background-image: url("honey_im_subtle.png");;
+	font-family: helvetica;
 }
 
 h1 {
 	text-align: center;
-	color: chartreuse;
+	font-family: 'Orbitron', sans-serif;
+	font-size: 50px;
 }
 
 .panel {
 	
 margin: 40px;
 
+}
+
+.panel-heading {
+	background-color: #83cfbd !important;
+	font-size: 25px;
 }
 
 form {

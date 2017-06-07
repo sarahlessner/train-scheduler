@@ -12,12 +12,13 @@ h1 {
 
 .panel {
 	
-margin: 40px;
+margin: 30px 80px;
 
 }
 
 .panel-heading {
-	background-color: #83cfbd !important;
+	background-color: #61d8dd !important;
+	font-family: 'Didact Gothic', sans-serif;
 	font-size: 25px;
 }
 
@@ -28,5 +29,7 @@ form {
 table {
 	width: 98.5% !important;
     margin-left: 10px;
-
+  
+ 
 }
+

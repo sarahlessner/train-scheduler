@@ -9,13 +9,6 @@ $("#submit-button").on("click", function(){
 
 	//prevent default
 	event.preventDefault();
-
-	//TODO: If any of the fields are empty - alert user to complete all fields
-	// if (($("#train-name").val() === "") || ($("#destination").val() === "") || 
-	//    ($("#first-train").val() === "") || ($("#frequency").val() === "")) {
-	// 	alert("Please complete all fields before submitting!");
-	// }
-
 	
 	// #train-name 
 	var trainName = $("#train-name").val().trim();
@@ -29,6 +22,7 @@ $("#submit-button").on("click", function(){
 	// #frequency
 	var frequency = $("#frequency").val().trim();
 
+	//If any of the fields are empty - alert user
 	if ((trainName === "") || (destination === "") || 
 	   (firstTrain === "") || (frequency === "")) {
 		alert("Please complete all fields before submitting!");

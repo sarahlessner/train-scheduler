@@ -96,18 +96,19 @@ myRow.append("<td>"+frequency+"</td>");
 //replace with variable storing calculation for minutes away
 myRow.append("<td>"+frequency+"</td>");
 //delete button
-myRow.append("<td>"+"<button>"+"<span class='glyphicon glyphicon-refresh' aria-hidden='true'>"+"</span>"+"</button>"+"<button>"+"<span class='glyphicon glyphicon-remove' aria-hidden='true'>"+"</span>"+"</button>"+"</td>");
+myRow.append("<td>"+"<button id='refresh-button'>"+"<span class='glyphicon glyphicon-refresh' aria-hidden='true'>"+"</span>"+"</button>"+"<button id='delete-button'>"+"<span class='glyphicon glyphicon-remove' aria-hidden='true'>"+"</span>"+"</button>"+"</td>");
 //append to id table-body
 $("#table-body").append(myRow);
 
 });
 
 //remove train
-// $("body").on("click", ".delete-train", function(){
-//      $(this).closest ('tr').remove();
-//      childKey = $(this).parent().parent().attr('id');
-//      database.child(childKey).remove();
-// });
+$("body").on("click", "#delete-button", function(){
+     //removes from display
+     $(this).closest('tr').remove();
+     //figure out how to remove in firebase
+     database.remove();
+});
 
 
 

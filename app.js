@@ -95,12 +95,19 @@ myRow.append("<td>"+frequency+"</td>");
 myRow.append("<td>"+frequency+"</td>");
 //replace with variable storing calculation for minutes away
 myRow.append("<td>"+frequency+"</td>");
+//delete button
+myRow.append("<td>"+"<button>"+"<span class='glyphicon glyphicon-refresh' aria-hidden='true'>"+"</span>"+"</button>"+"<button>"+"<span class='glyphicon glyphicon-remove' aria-hidden='true'>"+"</span>"+"</button>"+"</td>");
 //append to id table-body
 $("#table-body").append(myRow);
 
 });
 
-
+//remove train
+// $("body").on("click", ".delete-train", function(){
+//      $(this).closest ('tr').remove();
+//      childKey = $(this).parent().parent().attr('id');
+//      database.child(childKey).remove();
+// });
 
 
 

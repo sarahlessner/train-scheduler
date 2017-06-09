@@ -1,9 +1,29 @@
 $( document ).ready(function() {
-displayTrains();
 
-//firebase https://train-scheduler-77540.firebaseio.com/
+// Initialize Firebase
+   var config = {
+    apiKey: "AIzaSyAhmGGs74CTF3OvdTAfn0VAqnDu87UHNZ4",
+    authDomain: "train-scheduler-77540.firebaseapp.com",
+    databaseURL: "https://train-scheduler-77540.firebaseio.com",
+    projectId: "train-scheduler-77540",
+    storageBucket: "train-scheduler-77540.appspot.com",
+    messagingSenderId: "635654226813"
+  };
+  firebase.initializeApp(config);
+// reference for yourself: firebase.database.ServerValue.TIMESTAMP
 
-var counter = localStorage.length/4;
+  	var database = firebase.database();
+
+  	var trainName = "";
+  	var destination = "";
+  	var firstTrain = "";
+  	var frequency = 0;
+  	//calculated using moment.js and firstTrain/frequency user input
+  	var nextArrival = 0;
+  	var minutesAway = 0;
+
+
+
 //when #submit-button is clicked
 $("#submit-button").on("click", function(){
 
@@ -11,16 +31,16 @@ $("#submit-button").on("click", function(){
 	event.preventDefault();
 	
 	// #train-name 
-	var trainName = $("#train-name").val().trim();
+	trainName = $("#train-name").val().trim();
 
 	// #destination 
-	var destination = $("#destination").val().trim();
+	destination = $("#destination").val().trim();
 
 	// #first-train 
-	var firstTrain = $("#first-train").val().trim();
+	firstTrain = $("#first-train").val().trim();
 
 	// #frequency
-	var frequency = $("#frequency").val().trim();
+	frequency = $("#frequency").val().trim();
 
 	//If any of the fields are empty - alert user
 	if ((trainName === "") || (destination === "") || 
@@ -35,55 +55,57 @@ $("#submit-button").on("click", function(){
 	$("#first-train").val('');
 	$("#frequency").val('');
 
-	//store data in local storage, eventually firebase
-	// localStorage.clear();
+	//reference with key/value pairs for storing user input in firebase
 
-	localStorage.setItem("train-"+counter, trainName);
-	localStorage.setItem("destination-"+counter, destination);
-	localStorage.setItem("first-"+counter, firstTrain);
-	localStorage.setItem("frequency-"+counter, frequency);
-
-	counter++;
-
-	//call the function to display train data
-	displayTrains();
+	database.ref().push({
+        trainName: trainName,
+        destination: destination,
+        firstTrain: firstTrain,
+        frequency: frequency
+      });
 	};
 });
 
-//function to display train data
-function displayTrains() {
-	// console.log("displayTrains");
-	// console.log(localStorage.length);
-	//empty #table-body
-	$("#table-body").empty();
-	//loop through length of trainName array (accessed from storage?)
-	      
 
-	for (var i = 0; i < localStorage.length/4; i++) {
-		// console.log(i);
-		//jquery table row - store as variable
-		var myRow = $("<tr>");
-			//query <td> elements for each column of table appended to <tr>
 
-		myRow.append($("<td>").html(localStorage.getItem("train-"+i)));
-		myRow.append($("<td>").html(localStorage.getItem("destination-"+i)));
-		//calculate next arrival and minutes away with moment.js based on frequency and first train and current time
 
-		//store calculations as variables for next arrival &  minutes away
 
-		//append frequency
-		myRow.append($("<td>").html(localStorage.getItem("frequency-"+i)));
-		//append next arrival <td>
-		//append minutes away <td>
-		//these 2 rows are here for testing my rows display - delete after appending above 2 lines
-		myRow.append($("<td>").html(localStorage.getItem("first-"+i))); 
-		myRow.append($("<td>").html(localStorage.getItem("first-"+i))); 
-		//append <tr> to #table-body
-		$("#table-body").append(myRow);
-	};
-	
-};
-	
+database.ref().on("child_added", function(snapshot) {
+
+var trainName = snapshot.val().trainName;
+var destination = snapshot.val().destination;
+var frequency = snapshot.val().frequency;
+var firstTrain = snapshot.val().firstTrain;
+
+// var checkTime = //using moment pass in first train time
+// var currentTime = moment();
+
+// // get diff bt check and current time
+
+// var timeDiff = // another moment calculation (difference)
+
+
+var myRow = $("<tr>");
+
+
+myRow.append("<td>"+trainName+"</td>");
+myRow.append("<td>"+destination+"</td>");
+myRow.append("<td>"+frequency+"</td>");
+//replace with variable storing calculation for next arrival
+myRow.append("<td>"+frequency+"</td>");
+//replace with variable storing calculation for minutes away
+myRow.append("<td>"+frequency+"</td>");
+//append to id table-body
+$("#table-body").append(myRow);
+
+});
+
+
+
+
+
+
+//doc ready closing
 });
 
 

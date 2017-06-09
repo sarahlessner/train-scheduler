@@ -9,6 +9,10 @@
 
 	<link href="https://fonts.googleapis.com/css?family=Didact+Gothic|Orbitron:700" rel="stylesheet">
 
+	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
 </head>
 <body>
 <header>
@@ -29,7 +33,7 @@
 	    </tr>
 		</thead>
 		<tbody id="table-body">
-			<tr>
+		<!-- 	<tr>
 		      <td scope="row">Trainy McTrain</td>
 		      <td>Outer Space</td>
 		      <td>60</td>
@@ -37,7 +41,7 @@
 		      <td>20</td>
 		      <td><button><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button><button><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button></td>
 
-		    </tr>
+		    </tr> -->
 		</tbody>
 	</table>
 </div>
@@ -71,21 +75,9 @@
 </div>
 
 
-<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAhmGGs74CTF3OvdTAfn0VAqnDu87UHNZ4",
-    authDomain: "train-scheduler-77540.firebaseapp.com",
-    databaseURL: "https://train-scheduler-77540.firebaseio.com",
-    projectId: "train-scheduler-77540",
-    storageBucket: "train-scheduler-77540.appspot.com",
-    messagingSenderId: "635654226813"
-  };
-  firebase.initializeApp(config);
-</script>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 <script type="text/javascript" src="app.js"></script>
 </body>
 </html>

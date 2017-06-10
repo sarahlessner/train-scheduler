@@ -106,7 +106,7 @@ $( document ).ready(function() {
 
 		myRow.append($("<td>").html(trainName));
 		myRow.append($("<td>").html(destination));
-		myRow.append($("<td class='text-center'>").html(frequency));
+		myRow.append("<td class='text-center'>"+frequency+"</td>");
 		myRow.append($("<td class='text-center'>").html(nextTrain.format("HH:mm")));
 		myRow.append($("<td class='text-center'>").html(minutesAway));
 		//delete and refresh buttons

@@ -106,12 +106,12 @@ $( document ).ready(function() {
 
 		myRow.append($("<td>").html(trainName));
 		myRow.append($("<td>").html(destination));
-		myRow.append($("<td>").html(frequency));
-		myRow.append($("<td>").html(nextTrain.format("HH:mm")));
-		myRow.append($("<td>").html(minutesAway));
+		myRow.append($("<td class='text-center'>").html(frequency));
+		myRow.append($("<td class='text-center'>").html(nextTrain.format("HH:mm")));
+		myRow.append($("<td class='text-center'>").html(minutesAway));
 		//delete and refresh buttons
 		//delete
-		var myData = $("<td>");
+		var myData = $("<td class='text-center'>");
 		var myBtn = $("<button>");
 		var mySpan = $("<span>");
 		myBtn.attr("class", "remove-button");

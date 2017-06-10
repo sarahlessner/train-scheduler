@@ -116,7 +116,7 @@ $( document ).ready(function() {
 		var mySpan = $("<span>");
 		myBtn.attr("class", "remove-button");
 		myBtn.attr("data-key", myKey);
-		mySpan.attr("class", "glyphicon glyphicon-remove");
+		mySpan.attr("class", "glyphicon glyphicon-minus-sign");
 		mySpan.attr("aria-hidden", "true");
 		myBtn.append(mySpan);
 		myData.append(myBtn);

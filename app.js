@@ -99,7 +99,7 @@ $( document ).ready(function() {
 	};
 
 	//get info from firebase
-	database.ref().on("child_added", function(snapshot) {
+	database.ref().on("event", function(snapshot) {
 		//save the key as a variable
 		var myKey = snapshot.key;
 

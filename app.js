@@ -88,7 +88,6 @@ $( document ).ready(function() {
 		//check if hours and minutes ranges are valid for time formatting
 		if ((hours < 0 || hours > 23) || (mins < 0 || mins > 59)) {
 			alert("Hours must be 00-23, minutes must be 00-59");
-
 			return false;
 		}
 
@@ -118,7 +117,7 @@ $( document ).ready(function() {
 		if (timeDiff <= 0) {
 		// set minutesaway to the time that remains before the first train
 			minutesAway = -timeDiff;
-		// set the next train to the first scheduled train since the first one hasn't arrived yet
+		// set the next train to the first scheduled train since they are referencing the same train
 			nextTrain = mFirstTrain;
 
 		}

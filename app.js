@@ -79,7 +79,7 @@ $( document ).ready(function() {
 		}
 		//save user input into separate variables for hours and minutes
 		var hours = (parseInt(timestring.slice(0, 2)));
-		var mins = (parseInt(timestring.slice(0, 2)));
+		var mins = (parseInt(timestring.slice(3, 5)));
 		//check if hours and minutes are integers
 		if ((Number.isInteger(hours) === false) || (Number.isInteger(mins) === false)) {
 			alert("Please enter hours and minutes as numbers!");

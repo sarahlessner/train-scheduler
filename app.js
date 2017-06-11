@@ -22,7 +22,7 @@ $( document ).ready(function() {
 
 	//when #submit-button is clicked
 	$("#submit-button").on("click", function(){
-
+		
 		//prevent default
 		event.preventDefault();
 		
@@ -37,11 +37,21 @@ $( document ).ready(function() {
 
 		// #frequency
 		frequency = $("#frequency").val().trim();
+		
+		frequency = (parseInt(frequency));
 
 		//If any of the fields are empty - alert user
 		if ((trainName === "") || (destination === "") || 
 		   (firstTrain === "") || (frequency === "")) {
 			alert("Please complete all fields before submitting!");
+		}
+
+		else if (Number.isInteger(frequency) === false ){
+			alert("Train Frequency must be a number!");
+		}
+
+		else if (validateMilitary(firstTrain) === false) {
+			//do nothing alert will come from function
 		}
 
 		else {
@@ -61,6 +71,32 @@ $( document ).ready(function() {
 	      });
 		};
 	});
+	//function to validate user input for first train time - check if its in military time format
+	function validateMilitary(timestring) {
+
+		if ((timestring.length !== 5) || (timestring.charAt(2) !== ":")) {
+			alert("Please enter First Train time in HH:mm format!");
+			return false;
+		}
+
+		var firstTwo = timestring.slice(0, 2);
+		var lastTwo = timestring.slice(3, 5);
+		var hours = (parseInt(firstTwo));
+		var mins = (parseInt(lastTwo));
+
+		if ((Number.isInteger(hours) === false) || (Number.isInteger(mins) === false)) {
+			alert("Please enter hours and minutes as numbers!");
+			return false;
+		}
+		
+		if ((hours < 0 || hours > 23) || (mins < 0 || mins > 59)) {
+			alert("Hours must be 00-23, minutes must be 00-59");
+
+			return false;
+		}
+
+		return true;
+	};
 
 	//get info from firebase
 	database.ref().on("child_added", function(snapshot) {

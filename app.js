@@ -11,10 +11,9 @@ $( document ).ready(function() {
   	};
 
   	firebase.initializeApp(config);
-	// reference for yourself: firebase.database.ServerValue.TIMESTAMP
 
   	var database = firebase.database();
-
+  	//initialize variables for storing user input
   	var trainName = "";
   	var destination = "";
   	var firstTrain = "";
@@ -37,7 +36,7 @@ $( document ).ready(function() {
 
 		// #frequency
 		frequency = $("#frequency").val().trim();
-		
+		// convert frequency to integer for validating input
 		frequency = (parseInt(frequency));
 
 		//If any of the fields are empty - alert user
@@ -45,24 +44,23 @@ $( document ).ready(function() {
 		   (firstTrain === "") || (frequency === "")) {
 			alert("Please complete all fields before submitting!");
 		}
-
+		//check if user entered a number into the "frequency" form field
 		else if (Number.isInteger(frequency) === false ){
 			alert("Train Frequency must be a number!");
 		}
-
+		//check if function to validate military time input is false
 		else if (validateMilitary(firstTrain) === false) {
 			//do nothing alert will come from function
 		}
 
 		else {
-
+		//clear form fields
 		$("#train-name").val('');
 		$("#destination").val('');
 		$("#first-train").val('');
 		$("#frequency").val('');
 
-		//reference with key/value pairs for storing user input in firebase
-
+		//push user input to firebase
 		database.ref().push({
 	        trainName: trainName,
 	        destination: destination,
@@ -71,24 +69,23 @@ $( document ).ready(function() {
 	      });
 		};
 	});
-	//function to validate user input for first train time - check if its in military time format
-	function validateMilitary(timestring) {
 
+	//function to validate user input for first train time - check if its compatible with military time format
+	function validateMilitary(timestring) {
+		//check if user input string is 5 characters in length and check that 3rd character is ":"
 		if ((timestring.length !== 5) || (timestring.charAt(2) !== ":")) {
 			alert("Please enter First Train time in HH:mm format!");
 			return false;
 		}
-
-		var firstTwo = timestring.slice(0, 2);
-		var lastTwo = timestring.slice(3, 5);
-		var hours = (parseInt(firstTwo));
-		var mins = (parseInt(lastTwo));
-
+		//save user input into separate variables for hours and minutes
+		var hours = (parseInt(timestring.slice(0, 2)));
+		var mins = (parseInt(timestring.slice(0, 2)));
+		//check if hours and minutes are integers
 		if ((Number.isInteger(hours) === false) || (Number.isInteger(mins) === false)) {
 			alert("Please enter hours and minutes as numbers!");
 			return false;
 		}
-		
+		//check if hours and minutes ranges are valid for time formatting
 		if ((hours < 0 || hours > 23) || (mins < 0 || mins > 59)) {
 			alert("Hours must be 00-23, minutes must be 00-59");
 
@@ -137,44 +134,46 @@ $( document ).ready(function() {
 
 		}
 
-
+		//create row to store user input and moment calculations
 		var myRow = $("<tr>");
-
+		//store firebase key in the row
+		myRow.attr("id", myKey);
+		//append user input
 		myRow.append($("<td>").html(trainName));
 		myRow.append($("<td>").html(destination));
 		myRow.append("<td class='text-center'>"+frequency+"</td>");
 		myRow.append($("<td class='text-center'>").html(nextTrain.format("HH:mm")));
 		myRow.append($("<td class='text-center'>").html(minutesAway));
-		//delete and refresh buttons
-		//delete
+		//delete button 
 		var myData = $("<td class='text-center'>");
 		var myBtn = $("<button>");
 		var mySpan = $("<span>");
-		myBtn.attr("class", "remove-button");
+		myBtn.addClass("remove-button");
 		myBtn.attr("data-key", myKey);
-		mySpan.attr("class", "glyphicon glyphicon-minus-sign");
+		mySpan.addClass("glyphicon glyphicon-minus-sign");
 		mySpan.attr("aria-hidden", "true");
 		myBtn.append(mySpan);
 		myData.append(myBtn);
 		myRow.append(myData);
-		//another way to add the button
-		// myRow.append("<td>"+"<button id='refresh-button'>"+"<span class='glyphicon glyphicon-remove' aria-hidden='true'>"+"</span>"+"</button>"
 
-		//append all to id table-body
+		//append row to id table-body
 		$("#table-body").append(myRow);
 
 	});
 
-	//remove train
+	//remove train on click
 	$("body").on("click", ".remove-button", function(){
-	     //removes from display
-	     $(this).closest('tr').remove();
-	     //figure out how to remove in firebase
+	    //remove data from firebase associated with this buttons key
 	     database.ref().child($(this).attr("data-key")).remove();
 
 	});
-
-
+	//watcher for child removed
+	database.ref().on("child_removed", function(snapshot) {
+		//save the key as a variable
+		var myKey = snapshot.key;
+		//remove row with id that matches key of child that was removed
+		$("#"+myKey).remove();
+	});
 
 
 //doc ready closing

@@ -123,12 +123,11 @@ $( document ).ready(function() {
 		}
 
 		else {
-		//convert users input of frequency to an integer
-			var frequencyToInt = parseInt(frequency);
+		
 		//find out how long since the most recent train
-			var timeSinceLast = (timeDiff % frequencyToInt);
+			var timeSinceLast = (timeDiff % frequency);
 		//subtract that from the trains frequency to determine how many minutes until the next train
-			minutesAway = (frequencyToInt - timeSinceLast);
+			minutesAway = (frequency - timeSinceLast);
 			nextTrain = currentTime.add(minutesAway, 'minutes');
 
 		}

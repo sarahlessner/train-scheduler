@@ -4,70 +4,60 @@
 	<title>Train Scheduler</title>
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
 	<link rel="stylesheet" type="text/css" href="style.css">
-
 	<link href="https://fonts.googleapis.com/css?family=Didact+Gothic|Orbitron:700" rel="stylesheet">
-
 	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
-
 	<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-
 </head>
+
 <body>
-<header>
-	<h1>SPACE TRAINS</h1>
-</header>
+	<header>
+		<h1>SPACE TRAINS</h1>
+	</header>
 
-<div class="panel panel-default">
-	<div class="panel-heading">Current Train Schedule</div>
-	<table class="table-responsive table">
-		<thead>
-	    <tr>
-	      <th>Train Name</th>
-	      <th>Destination</th>
-	      <th class='text-center'>Frequency (min)</th>
-	      <th class='text-center'>Next Arrival</th>
-	      <th class='text-center'>Minutes Away</th>
-	      <th class='text-center'>Remove</th>
-	    </tr>
-		</thead>
-		<tbody id="table-body"></tbody>
-	</table>
-</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">Current Train Schedule</div>
+		<table class="table-responsive table">
+			<thead>
+		    <tr>
+		      <th>Train Name</th>
+		      <th>Destination</th>
+		      <th class='text-center'>Frequency (min)</th>
+		      <th class='text-center'>Next Arrival</th>
+		      <th class='text-center'>Minutes Away</th>
+		      <th class='text-center'>Remove</th>
+		    </tr>
+			</thead>
+			<tbody id="table-body"></tbody>
+		</table>
+	</div>
 
-
-
-
-<!-- Add Train Form -->
-
-<div class="panel panel-default">
-	<div class="panel-heading">Add Train</div>
-	<form>
-		<div class="form-group">
-		    <label for="train-name">Train Name</label>
-		    <input type="text" class="form-control" id="train-name">
-  		</div>
- 		<div class="form-group">
-		    <label for="destination">Destination</label>
-		    <input type="text" class="form-control" id="destination">
-  		</div>
-  		<div class="form-group">
-		    <label for="first-train">First Train Time (HH:mm - military time)</label>
-		    <input type="text" class="form-control" id="first-train">
-  		</div>
-  		<div class="form-group">
-		    <label for="frequency">Frequency (min)</label>
-		    <input type="text" class="form-control" id="frequency">
-  		</div>
-  		<button type="submit" id="submit-button" class="btn btn-default">Submit</button>
-	</form>
-</div>
+	<!-- Add Train Form -->
+	<div class="panel panel-default">
+		<div class="panel-heading">Add Train</div>
+		<form>
+			<div class="form-group">
+			    <label for="train-name">Train Name</label>
+			    <input type="text" class="form-control" id="train-name">
+	  		</div>
+	 		<div class="form-group">
+			    <label for="destination">Destination</label>
+			    <input type="text" class="form-control" id="destination">
+	  		</div>
+	  		<div class="form-group">
+			    <label for="first-train">First Train Time (HH:mm - military time)</label>
+			    <input type="text" class="form-control" id="first-train">
+	  		</div>
+	  		<div class="form-group">
+			    <label for="frequency">Frequency (min)</label>
+			    <input type="text" class="form-control" id="frequency">
+	  		</div>
+	  		<button type="submit" id="submit-button" class="btn btn-default">Submit</button>
+		</form>
+	</div>
 
 
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="app.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
 </body>
 </html>

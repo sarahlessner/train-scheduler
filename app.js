@@ -21,26 +21,15 @@ $( document ).ready(function() {
 
 	//when #submit-button is clicked
 	$("#submit-button").on("click", function(){
-		
-		//prevent default
 		event.preventDefault();
-		
-		// #train-name 
 		trainName = $("#train-name").val().trim();
-
-		// #destination 
 		destination = $("#destination").val().trim();
-
-		// #first-train 
 		firstTrain = $("#first-train").val().trim();
-
-		// #frequency
 		frequency = $("#frequency").val().trim();
-		// convert frequency to integer for validating input
 		frequency = (parseInt(frequency));
 
 		//If any of the fields are empty - alert user
-		if ((trainName === "") || (destination === "") || 
+		if ((trainName === "") || (destination === "") ||
 		   (firstTrain === "") || (frequency === "")) {
 			alert("Please complete all fields before submitting!");
 		}
@@ -52,21 +41,20 @@ $( document ).ready(function() {
 		else if (validateMilitary(firstTrain) === false) {
 			//do nothing alert will come from function
 		}
-
 		else {
-		//clear form fields
-		$("#train-name").val('');
-		$("#destination").val('');
-		$("#first-train").val('');
-		$("#frequency").val('');
+  		//clear form fields
+  		$("#train-name").val('');
+  		$("#destination").val('');
+  		$("#first-train").val('');
+  		$("#frequency").val('');
 
-		//push user input to firebase
-		database.ref().push({
-	        trainName: trainName,
-	        destination: destination,
-	        firstTrain: firstTrain,
-	        frequency: frequency
-	      });
+  		//push user input to firebase
+  		database.ref().push({
+        trainName: trainName,
+        destination: destination,
+        firstTrain: firstTrain,
+        frequency: frequency
+      });
 		};
 	});
 
@@ -105,7 +93,7 @@ $( document ).ready(function() {
 		var frequency = snapshot.val().frequency;
 		var firstTrain = snapshot.val().firstTrain;
 
-		//initializing moment objects 
+		//initializing moment objects
 		var mFirstTrain = moment(firstTrain, "HH:mm");
 		var currentTime = moment();
 
@@ -119,17 +107,14 @@ $( document ).ready(function() {
 			minutesAway = -timeDiff;
 		// set the next train to the first scheduled train since they are referencing the same train
 			nextTrain = mFirstTrain;
-
 		}
 
 		else {
-		
 		//find out how long since the most recent train
 			var timeSinceLast = (timeDiff % frequency);
 		//subtract that from the trains frequency to determine how many minutes until the next train
 			minutesAway = (frequency - timeSinceLast);
 			nextTrain = currentTime.add(minutesAway, 'minutes');
-
 		}
 
 		//create row to store user input and moment calculations
@@ -142,7 +127,7 @@ $( document ).ready(function() {
 		myRow.append("<td class='text-center'>"+frequency+"</td>");
 		myRow.append($("<td class='text-center'>").html(nextTrain.format("HH:mm")));
 		myRow.append($("<td class='text-center'>").html(minutesAway));
-		//delete button 
+		//delete button
 		var myData = $("<td class='text-center'>");
 		var myBtn = $("<button>");
 		var mySpan = $("<span>");
@@ -163,9 +148,8 @@ $( document ).ready(function() {
 	$("body").on("click", ".remove-button", function(){
 	    //remove data from firebase associated with this buttons key
 	     database.ref().child($(this).attr("data-key")).remove();
-
 	});
-	//watcher for child removed
+	//watcher for child removed - deletes train
 	database.ref().on("child_removed", function(snapshot) {
 		//save the key as a variable
 		var myKey = snapshot.key;
@@ -173,8 +157,5 @@ $( document ).ready(function() {
 		$("#"+myKey).remove();
 	});
 
-
 //doc ready closing
 });
-
-
